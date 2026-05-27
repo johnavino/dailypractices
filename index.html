@@ -286,6 +286,7 @@ let currentBook=null, currentGuide=null, browseTheme=null, browseQ='';
 
 // ── Navigation ─────────────────────────────────────────────────────────────────
 function setView(v){
+  window.scrollTo(0,0);
   ['daily','books','guides','browse'].forEach(n=>{
     document.getElementById(n+'-view').classList.toggle('hidden',n!==v);
     const b=document.getElementById('btn-'+n);if(b)b.classList.toggle('active',n===v);
@@ -303,6 +304,7 @@ function renderDailyIntro(){
 
 // ── Books view ──────────────────────────────────────────────────────────────────
 function renderBooksView(bookIdx){
+  window.scrollTo(0,0);
   currentBook=bookIdx;
   const ct=document.getElementById('books-content');
   if(currentBook===null){
@@ -340,6 +342,7 @@ function renderBooksView(bookIdx){
 
 // ── Guides view ─────────────────────────────────────────────────────────────────
 function renderGuidesView(guideIdx){
+  window.scrollTo(0,0);
   currentGuide=guideIdx;
   const ct=document.getElementById('guides-content');
   if(currentGuide===null){
