@@ -149,6 +149,9 @@
   .list-card:hover{background:#f7f3ee}
   .expand-example{margin-bottom:1.2rem;padding-left:1rem;border-left:2px solid var(--rule)}
   .expand-example:last-child{margin-bottom:0}
+  .pitfall-example{border-left-color:var(--accent-light);background:rgba(184,125,75,.07);padding:.65rem 1rem .65rem 1rem;border-radius:0 3px 3px 0}
+  .pitfall-example .example-label{color:var(--accent)}
+  .pitfall-example .example-label::before{content:'\26A0\0020'}
 
   /* Browse */
   .browse-search{width:100%;box-sizing:border-box;background:var(--card-bg);border:1px solid var(--rule);padding:.65rem 1rem;font-size:.9rem;color:var(--ink);font-family:'Source Serif 4',serif;outline:none;margin-bottom:1rem}
@@ -233,6 +236,12 @@ function relHtml(p){
   return `<div class="related-section"><h4>Related practices</h4><div class="related-links">${links}</div></div>`;
 }
 
+function exHtml(examples){
+  return (examples||[]).map(ex=>{
+    const pit=ex.l.toLowerCase().includes('pitfall')||ex.l.toLowerCase().includes('misunderstanding');
+    return `<div class="expand-example${pit?' pitfall-example':''}"><div class="example-label">${ex.l}</div><div class="example-text">${ex.t}</div></div>`;
+  }).join('');
+}
 function jumpToCard(targetIdx, ev){
   if(ev){ev.stopPropagation(); ev.preventDefault();}
   filter = 'all';
@@ -381,7 +390,6 @@ function setBrowseQ(q){browseQ=q;renderBrowseView();}
 // ── Shared list card builder ────────────────────────────────────────────────────
 function buildListCard(p,cidx){
   const eId='lce-'+cidx;
-  const exHtml=p.e.map(ex=>`<div class="expand-example"><div class="example-label">${ex.l}</div><div class="example-text">${ex.t}</div></div>`).join('');
   const ctxHtml=p.ctx?`<div class="card-ctx">${p.ctx}</div>`:'';
   const rel=relHtml(p);
   return `<div class="list-card-wrap">
@@ -395,7 +403,7 @@ function buildListCard(p,cidx){
       <div class="expand-toggle" id="${eId}-tog">Dive deeper</div>
     </div>
     <div class="card-expand" id="${eId}">
-      <div class="expand-inner">${exHtml}</div>${rel}
+      <div class="expand-inner">${exHtml(p.e)}</div>${rel}
     </div>
   </div>`;
 }
