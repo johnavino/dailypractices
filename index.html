@@ -261,7 +261,7 @@ function renderDaily(){
   const ctxEl=document.getElementById('d-ctx');
   if(ctxEl){ctxEl.textContent=p.ctx||'';ctxEl.style.display=p.ctx?'':'none';}
   document.getElementById('d-body').innerHTML=p.b;
-  document.getElementById('d-prompt').textContent='\u21b3 '+p.q;
+  document.getElementById('d-prompt').innerHTML='\u21b3 '+p.q;
   document.getElementById('d-counter').textContent=`${(idx%f.length)+1} of ${f.length}`;
   document.getElementById('d-examples').innerHTML='<h3>Examples &amp; how it sounds</h3>'+exHtml(p.e)+relHtml(p);
   document.getElementById('daily-expand').classList.remove('open');
