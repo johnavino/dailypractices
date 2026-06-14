@@ -298,6 +298,7 @@ function renderDaily(){
   document.getElementById('d-examples').innerHTML='<h3>Examples &amp; how it sounds</h3>'+exHtml(p.e);
   document.getElementById('daily-expand').classList.remove('open');
   document.getElementById('d-toggle').classList.remove('open');
+  updateHomeBlocks();
 }
 
 function toggleExpand(eid,tid,ev){
@@ -318,8 +319,22 @@ const THEME_COLORS={listen:'#2e7080',questions:'#5c3898',empathy:'#903030',confl
 let currentBook=null, currentGuide=null, browseTheme=null, browseQ='';
 
 // ── Navigation ─────────────────────────────────────────────────────────────────
+function updateHomeBlocks(){
+  const dv=document.getElementById('daily-view');
+  const onDaily = dv && !dv.classList.contains('hidden');
+  const landing = onDaily && !window._browsed && !window._deepLinked;
+  const sh=document.getElementById('start-here'), di=document.getElementById('daily-intro');
+  if(sh) sh.style.display = landing ? '' : 'none';
+  if(di) di.style.display = landing ? '' : 'none';
+}
 function openStartHere(){
+  // Return to the home/landing state: today's card, orientation visible.
+  window._browsed=false; window._deepLinked=false;
+  const day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/86400000);
+  idx=day%P.length;
   setView('daily');
+  renderDaily();
+  updateHomeBlocks();
   const d=document.getElementById('start-here');
   if(d){d.open=true; d.scrollIntoView({behavior:'smooth',block:'start'});}
 }
@@ -333,6 +348,7 @@ function setView(v){
   if(v==='books')renderBooksView(null);
   if(v==='guides')renderGuidesView(null);
   if(v==='browse')renderBrowseView();
+  updateHomeBlocks();
 }
 
 function renderDailyIntro(){
@@ -498,6 +514,7 @@ const dayOfYear=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/8
 let idx=hashMatch?(parseInt(hashMatch[1],10)-1+P.length)%P.length:dayOfYear%P.length;
 renderDaily();
 renderDailyIntro();
+updateHomeBlocks();
 
 </script>
 </body>
