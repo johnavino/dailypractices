@@ -12,6 +12,9 @@
   header{text-align:center;max-width:640px;margin:0 auto 2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--rule)}
   header h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.5rem);font-weight:400;margin-bottom:.5rem}
   header p{font-size:.9rem;color:var(--muted);font-style:italic}
+  header .tagline{margin-top:.1rem}
+  .header-start-link{margin-top:1rem;background:none;border:none;font-family:'Source Serif 4',serif;font-size:.8rem;letter-spacing:.04em;color:var(--accent);cursor:pointer;border-bottom:1px solid var(--accent);padding:0 0 1px;transition:opacity .2s}
+  .header-start-link:hover{opacity:.7}
   .view-toggle{display:flex;justify-content:center;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
   .view-btn{font-family:'Source Serif 4',serif;font-size:.8rem;letter-spacing:.07em;text-transform:uppercase;padding:.6rem 1.1rem;border:1px solid var(--rule);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
   .view-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(122,79,45,.05)}
@@ -43,53 +46,13 @@
   .nav-btn{font-family:'Source Serif 4',serif;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid var(--rule);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
   .nav-btn:hover{border-color:var(--accent);color:var(--accent)}
   .daily-counter{font-size:.78rem;color:var(--muted);letter-spacing:.05em}
-  .all-view{max-width:640px;margin:0 auto}
-  .mode-toggle{display:flex;justify-content:center;gap:.4rem;margin-bottom:1.2rem}
-  .mode-btn{font-family:'Source Serif 4',serif;font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;padding:.32rem .9rem;border:1px solid var(--rule);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
-  .mode-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(122,79,45,.05)}
   .filter-row{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;margin-bottom:2rem}
   .filter-btn{font-family:'Source Serif 4',serif;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;padding:.32rem .85rem;border:1px solid var(--rule);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
   .filter-btn.active{border-color:var(--accent-light);color:var(--accent);background:rgba(122,79,45,.05)}
-  .grid{display:grid;gap:1.2rem}
-  .grid-card{background:var(--card-bg);border:1px solid var(--rule);overflow:hidden}
-  .grid-card-top{padding:1.5rem 1.8rem 1.3rem;cursor:pointer;transition:background .15s;position:relative}
-  .grid-card-top:hover{background:#f7f3ee}
-  .theme-section{margin-bottom:2.5rem}
-  .theme-header{display:flex;justify-content:space-between;align-items:baseline;padding:.9rem 0;border-bottom:2px solid var(--accent);cursor:pointer;margin-bottom:1.2rem}
-  .theme-name-wrap{display:flex;align-items:baseline;gap:.8rem}
-  .theme-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--accent)}
-  .theme-count{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-  .theme-arrow{font-size:.85rem;color:var(--muted);transition:transform .3s;display:inline-block}
-  .theme-arrow.closed{transform:rotate(-90deg)}
-  .theme-cards{display:grid;gap:1rem}
-  .theme-cards.hidden{display:none}
   .empty-msg{text-align:center;color:var(--muted);font-style:italic;padding:3rem 0}
   .hidden{display:none}
 
-  .start-view{max-width:680px;margin:0 auto}
-  .welcome-card{background:var(--card-bg);border:1px solid var(--rule);padding:2rem 2.2rem;margin-bottom:3rem}
-  .welcome-h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;margin-bottom:1rem;color:var(--ink)}
-  .welcome-card p{font-size:.95rem;line-height:1.75;color:#3d3530;margin-bottom:1rem}
-  .welcome-card p:last-child{margin-bottom:0}
-  .welcome-card strong{color:var(--accent)}
-  .welcome-card em{color:var(--accent);font-style:italic}
-  .welcome-howto{margin-top:1.5rem!important}
-  .welcome-list{list-style:none;padding-left:0;margin:.5rem 0 1rem 0}
-  .welcome-list li{font-size:.95rem;line-height:1.7;color:#3d3530;padding:.4rem 0 .4rem 1rem;border-left:2px solid var(--rule);margin-bottom:.4rem}
-  .section-block{margin-bottom:3rem}
-  .section-heading{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:var(--accent);margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent)}
   .section-intro{font-size:.88rem;color:var(--muted);font-style:italic;margin-bottom:1.5rem;line-height:1.6}
-  .books-grid{display:grid;gap:1rem}
-  .book-card{background:var(--card-bg);border:1px solid var(--rule);padding:1.4rem 1.6rem;cursor:pointer;transition:all .2s}
-  .book-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-1px)}
-  .book-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:.15rem}
-  .book-author{font-size:.78rem;color:var(--accent-light);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.8rem}
-  .book-about{font-size:.9rem;line-height:1.65;color:#3d3530;margin-bottom:.6rem}
-  .book-distinctive{font-size:.85rem;line-height:1.6;color:#3d3530;margin-bottom:.8rem;padding-top:.6rem;border-top:1px solid var(--rule)}
-  .book-distinctive strong{color:var(--accent);font-weight:600}
-  .book-meta{display:flex;justify-content:space-between;align-items:center;padding-top:.6rem;border-top:1px solid var(--rule);font-size:.72rem;color:var(--muted);letter-spacing:.04em}
-  .book-count{font-weight:600;text-transform:uppercase}
-  .book-themes{font-style:italic;text-align:right}
   .theme-overview{background:rgba(122,79,45,.04);border-left:3px solid var(--accent-light);padding:.9rem 1.2rem;margin-bottom:1rem;font-size:.88rem;line-height:1.65;color:#3d3530;font-style:italic}
   .related-section{margin-top:1.6rem;padding-top:1.4rem;border-top:1px dashed var(--rule)}
   .related-section h4{font-family:'Playfair Display',serif;font-size:.88rem;font-weight:600;color:var(--accent);margin-bottom:.8rem;letter-spacing:.03em}
@@ -197,6 +160,10 @@
 
 
   .daily-date{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+  .daily-related{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
+  .rel-chip-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:.2rem}
+  .rel-chip{font-size:.78rem;line-height:1.3;color:var(--accent);border:1px solid var(--rule);border-radius:20px;padding:.28rem .7rem;cursor:pointer;transition:all .15s}
+  .rel-chip:hover{border-color:var(--accent);background:rgba(122,79,45,.05)}
   .daily-card .card-practice{font-size:1.45rem;line-height:1.25}
   .browse-book-header{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:1.7rem 0 .8rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule)}
   @media (prefers-color-scheme: dark){
@@ -224,7 +191,8 @@
 <body>
 <header>
   <h1>Daily Practices</h1>
-  
+  <p class="tagline">116 practices from 22 books on listening, connection &amp; hard conversations</p>
+  <button class="header-start-link" onclick="openStartHere()">New here? Start with the overview &rarr;</button>
 </header>
 <div class="view-toggle">
   <button class="view-btn active" id="btn-daily" onclick="setView('daily')">Daily</button>
@@ -247,6 +215,7 @@
     <div class="card-ctx" id="d-ctx"></div>
     <div class="card-body" id="d-body"></div>
     <div class="card-prompt" id="d-prompt"></div>
+    <div class="daily-related" id="d-related"></div>
     <div class="expand-toggle" id="d-toggle">Dive deeper</div>
   </div>
   <div class="card-expand" id="daily-expand">
@@ -306,7 +275,11 @@ function renderDaily(){
   history.replaceState(null,'','#card-'+((idx%f.length)+1));
   const p=f[idx%f.length],ri=P.indexOf(p);
   document.getElementById('d-num').textContent=String((idx%f.length)+1).padStart(2,'0');
-  const dEl=document.getElementById('d-date');if(dEl){dEl.textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})+' \u00b7 Card '+((idx%f.length)+1)+' of '+f.length;}
+  const dEl=document.getElementById('d-date');if(dEl){
+    if(window._deepLinked){ dEl.textContent='Shared card'; }
+    else if(window._browsed){ dEl.textContent='Browsing'; }
+    else { dEl.textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})+" \u00b7 Today's practice"; }
+  }
   document.getElementById('d-source').innerHTML=p.s+(p.t?' <span class="theme-tag tag-'+p.t+'" style="margin-left:.5rem;vertical-align:middle">'+(THEMES[p.t]||p.t)+'</span>':'');
   document.getElementById('d-practice').textContent=p.p;
   const ctxEl=document.getElementById('d-ctx');
@@ -314,7 +287,15 @@ function renderDaily(){
   document.getElementById('d-body').innerHTML=p.b;
   document.getElementById('d-prompt').innerHTML='\u21b3 '+p.q;
   document.getElementById('d-counter').textContent=`${(idx%f.length)+1} of ${f.length}`;
-  document.getElementById('d-examples').innerHTML='<h3>Examples &amp; how it sounds</h3>'+exHtml(p.e)+relHtml(p);
+  const relEl=document.getElementById('d-related');
+  if(relEl){
+    if(p.r&&p.r.length){
+      const chips=p.r.map(ix=>{const tp=P[ix];return tp?`<span class=\"rel-chip\" onclick=\"jumpToCard(${ix},event)\">${tp.p}</span>`:'';}).join('');
+      relEl.innerHTML='<span class=\"rel-chip-label\">Connects to</span>'+chips;
+      relEl.style.display='';
+    } else { relEl.innerHTML=''; relEl.style.display='none'; }
+  }
+  document.getElementById('d-examples').innerHTML='<h3>Examples &amp; how it sounds</h3>'+exHtml(p.e);
   document.getElementById('daily-expand').classList.remove('open');
   document.getElementById('d-toggle').classList.remove('open');
 }
@@ -327,8 +308,8 @@ function toggleExpand(eid,tid,ev){
   if(t)t.classList.toggle('open',o);
 }
 
-function changeCard(d){const f=filt();if(!f.length)return;idx=((idx+d)+f.length)%f.length;renderDaily();}
-function shuffleCard(){const f=filt();if(f.length<=1)return;let n;do{n=Math.floor(Math.random()*f.length);}while(n===idx%f.length&&f.length>1);idx=n;renderDaily();}
+function changeCard(d){const f=filt();if(!f.length)return;window._deepLinked=false;window._browsed=true;idx=((idx+d)+f.length)%f.length;renderDaily();}
+function shuffleCard(){const f=filt();if(f.length<=1)return;window._deepLinked=false;window._browsed=true;let n;do{n=Math.floor(Math.random()*f.length);}while(n===idx%f.length&&f.length>1);idx=n;renderDaily();}
 
 function filt(){return P;}
 
@@ -337,6 +318,11 @@ const THEME_COLORS={listen:'#2e7080',questions:'#5c3898',empathy:'#903030',confl
 let currentBook=null, currentGuide=null, browseTheme=null, browseQ='';
 
 // ── Navigation ─────────────────────────────────────────────────────────────────
+function openStartHere(){
+  setView('daily');
+  const d=document.getElementById('start-here');
+  if(d){d.open=true; d.scrollIntoView({behavior:'smooth',block:'start'});}
+}
 function setView(v){
   window.scrollTo(0,0);
   ['daily','books','guides','browse'].forEach(n=>{
@@ -507,6 +493,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')changeCard(-1);
 });
 const hashMatch=location.hash.match(/^#card-(\d+)$/);
+window._deepLinked=!!hashMatch;
 const dayOfYear=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/86400000);
 let idx=hashMatch?(parseInt(hashMatch[1],10)-1+P.length)%P.length:dayOfYear%P.length;
 renderDaily();
