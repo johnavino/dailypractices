@@ -160,9 +160,10 @@
 
 
   .daily-date{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
-  .daily-related{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
-  .rel-chip-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:.2rem}
-  .rel-chip{font-size:.78rem;line-height:1.3;color:var(--accent);border:1px solid var(--rule);border-radius:20px;padding:.28rem .7rem;cursor:pointer;transition:all .15s}
+  .expand-related{margin-top:1.5rem;padding-top:1.3rem;border-top:1px solid var(--rule)}
+  .expand-related-label{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:.8rem}
+  .rel-chip-row{display:flex;flex-wrap:wrap;gap:.5rem}
+  .rel-chip{font-size:.82rem;line-height:1.3;color:var(--accent);border:1px solid var(--rule);border-radius:20px;padding:.32rem .8rem;cursor:pointer;transition:all .15s;background:var(--card-bg)}
   .rel-chip:hover{border-color:var(--accent);background:rgba(122,79,45,.05)}
   .daily-card .card-practice{font-size:1.45rem;line-height:1.25}
   .browse-book-header{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:1.7rem 0 .8rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule)}
@@ -215,7 +216,6 @@
     <div class="card-ctx" id="d-ctx"></div>
     <div class="card-body" id="d-body"></div>
     <div class="card-prompt" id="d-prompt"></div>
-    <div class="daily-related" id="d-related"></div>
     <div class="expand-toggle" id="d-toggle">Dive deeper</div>
   </div>
   <div class="card-expand" id="daily-expand">
@@ -245,6 +245,11 @@ const GUIDES=[{"id": "foundations", "title": "Foundations", "desc": "Ten practic
 const START_HERE_HTML=`<p class="sh-lead">You already know how to talk to people. What this collection offers is something narrower and harder: the ability to make another person feel <em>understood</em>, to stay honest when honesty is uncomfortable, and to stay steady inside yourself while you do it. Twenty-two books, distilled to their working parts. None of it requires you to become someone else. It asks you to do, on purpose and reliably, things most people only do by accident.</p><p><strong>The skills are practical and few.</strong> Listening so that someone keeps talking rather than shuts down. Asking questions that open a person up instead of confirming what you already assumed. Naming an emotion — yours or theirs — precisely enough that it loosens its grip. Speaking a hard truth as an observation rather than an accusation. Setting a limit without a fight. Apologizing in a way that actually repairs. Staying present when your own alarm system wants to pursue, withdraw, or defend. These recur across nearly every book, from different angles, because they are the load-bearing moves of human connection.</p><p><strong>But the deeper value is a handful of perspective shifts</strong> — reorientations that, once they land, change how everything else looks:</p><ul class="sh-shifts"><li><strong>From being understood to understanding.</strong> The default human posture is to wait for your turn. Almost every book here inverts it: connection begins when you stop performing and start genuinely trying to learn who the other person is.</li><li><strong>From fixing to witnessing.</strong> Much of the time, people in pain don’t need a solution. They need a witness. The urge to resolve someone’s discomfort quickly is often about relieving your <em>own</em>.</li><li><strong>From controlling others to governing yourself.</strong> A boundary is a statement about what <em>you’ll</em> do, not a demand that others change. A request can be refused. Their reaction is their task, not yours. This single shift dissolves a startling amount of conflict.</li><li><strong>From treating thoughts and feelings as facts to treating them as data.</strong> “I’m not good enough” is a thought your brain generated, not a verdict. Resentment is information about a missing limit. The body often knows you’re out of alignment before the mind admits it.</li><li><strong>From living for approval to navigating by an inner compass.</strong> The fear of people’s opinions may be the single greatest constrictor of human potential. The alternative isn’t not caring — it’s measuring yourself against your own evolving standards rather than the room’s reaction.</li><li><strong>From honesty <em>versus</em> the relationship to honesty <em>and</em> the relationship.</strong> The belief that you must choose between candor and connection is a false choice. The skill is the “elusive AND” — being fully honest and fully respectful at once.</li><li><strong>From independence as the goal to secure interdependence.</strong> Needing others isn’t weakness. People with someone reliable to lean on become <em>more</em> capable and willing to take risks, not less.</li></ul><p><strong>Where this knowledge came from.</strong> None of it began as science. Contemplative and philosophical traditions mapped the inner life first — Buddhist psychology separating unavoidable pain from the suffering we add to it; the Stoics and, later, Adler distinguishing what’s in our control from what isn’t. The clinical era followed: Freud’s unconscious, Adler’s break from him (we’re pulled by future goals, not just pushed by past wounds), and Bowlby’s discovery that the need for secure attachment is biological. The quiet hinge was Carl Rogers, who proposed that people change when met with acceptance rather than pressure — a claim that now runs beneath motivational interviewing, validation, and coaching alike. From there it became measurable: “third wave” therapies like ACT and DBT showed you can change your <em>relationship</em> to a painful thought instead of fighting it, while brain imaging confirmed that simply naming an emotion calms the threat response. Practitioners carried the rest into the world — negotiation researchers, Amy Edmondson on psychological safety, and the writers behind these very books.</p><p>What’s striking — and part of why it’s worth trusting — is how often they converge. People working from utterly different starting points keep arriving at the same handful of conclusions: <em>name the feeling. Seek first to understand. Separate the person from the problem. Accept before you try to change.</em> When an FBI interrogator and a Buddhist-influenced life coach independently reach the same place, the place is probably real.</p><p class="sh-close">You don’t have to read all twenty-two books. That’s what this is for.</p>`;
 const INTRO_HTML=`<p style="margin:0 0 8px;font-size:.88rem;line-height:1.7">116 practices from 22 books on communication, connection, and emotional intelligence. Each card stands on its own \u2014 whether or not you\u2019ve read the source.</p><p style="margin:0 0 8px;font-size:.82rem;line-height:1.65;color:var(--muted)">About to give hard feedback? Sitting with someone who\u2019s struggling? There\u2019s a <a style="color:var(--accent);cursor:pointer" onclick="setView('guides')">Guide</a> for that \u2014 curated sets of practices for specific moments.</p><p style="margin:0;font-size:.82rem;line-height:1.65;color:var(--muted)">Or browse by <a style="color:var(--accent);cursor:pointer" onclick="setView('books')">Book</a>, or <a style="color:var(--accent);cursor:pointer" onclick="setView('browse')">Browse</a> everything. A new card appears here each day.</p>`;
 
+function connectsHtml(p){
+  if(!p.r||!p.r.length) return '';
+  const chips=p.r.map(ix=>{const tp=P[ix];return tp?`<span class="rel-chip" onclick="jumpToCard(${ix},event)">${tp.p}</span>`:'';}).join('');
+  return `<div class="expand-related"><div class="expand-related-label">Connects to</div><div class="rel-chip-row">${chips}</div></div>`;
+}
 function relHtml(p){
   if(!p.r||!p.r.length) return '';
   const links = p.r.map(i=>{
@@ -287,15 +292,7 @@ function renderDaily(){
   document.getElementById('d-body').innerHTML=p.b;
   document.getElementById('d-prompt').innerHTML='\u21b3 '+p.q;
   document.getElementById('d-counter').textContent=`${(idx%f.length)+1} of ${f.length}`;
-  const relEl=document.getElementById('d-related');
-  if(relEl){
-    if(p.r&&p.r.length){
-      const chips=p.r.map(ix=>{const tp=P[ix];return tp?`<span class=\"rel-chip\" onclick=\"jumpToCard(${ix},event)\">${tp.p}</span>`:'';}).join('');
-      relEl.innerHTML='<span class=\"rel-chip-label\">Connects to</span>'+chips;
-      relEl.style.display='';
-    } else { relEl.innerHTML=''; relEl.style.display='none'; }
-  }
-  document.getElementById('d-examples').innerHTML='<h3>Examples &amp; how it sounds</h3>'+exHtml(p.e);
+  document.getElementById('d-examples').innerHTML='<h3>Examples &amp; how it sounds</h3>'+exHtml(p.e)+connectsHtml(p);
   document.getElementById('daily-expand').classList.remove('open');
   document.getElementById('d-toggle').classList.remove('open');
   updateHomeBlocks();
