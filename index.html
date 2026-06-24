@@ -26,7 +26,7 @@
   .icon-btn.bookmarked{color:var(--bookmark)}
   .daily-card{background:var(--card-bg);border:1px solid var(--rule);padding:2.2rem 2.2rem 1.8rem;position:relative;cursor:pointer;transition:box-shadow .2s}
   .daily-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.07)}
-  .card-number{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--rule);position:absolute;top:1rem;right:1.4rem;line-height:1;user-select:none}
+  
   .card-source{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-light);margin-bottom:.7rem;padding-right:4.5rem}
   .card-practice{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;line-height:1.3;margin-bottom:.9rem;padding-right:2.5rem}.card-ctx{font-size:.73rem;letter-spacing:.06em;color:var(--muted);margin-top:-.4rem;margin-bottom:.65rem;opacity:.8}
   .card-body{font-size:.95rem;line-height:1.78;color:#3d3530}
@@ -177,7 +177,7 @@
     .book-grid-card:hover,.guide-list-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.4)}
     .detail-about{background:rgba(212,168,106,.06)}
     .pitfall-example{background:rgba(212,168,106,.1)}
-    .card-number{color:#4d4332}
+    
     .browse-chip.active{color:#221d15}
     .tag-listen{color:#7cc4d6;border-color:rgba(124,196,214,.45);background:rgba(124,196,214,.12)}
     .tag-questions{color:#b6a0e8;border-color:rgba(182,160,232,.45);background:rgba(182,160,232,.12)}
@@ -210,7 +210,6 @@
   </div>
   <div class="daily-date" id="d-date"></div>
   <div class="daily-card" onclick="toggleExpand('daily-expand','d-toggle',event)">
-    <div class="card-number" id="d-num"></div>
     <div class="card-source" id="d-source"></div>
     <div class="card-practice" id="d-practice"></div>
     <div class="card-ctx" id="d-ctx"></div>
@@ -279,7 +278,6 @@ function renderDaily(){
   const f=filt();if(!f.length)return;
   history.replaceState(null,'','#card-'+((idx%f.length)+1));
   const p=f[idx%f.length],ri=P.indexOf(p);
-  document.getElementById('d-num').textContent=String((idx%f.length)+1).padStart(2,'0');
   const dEl=document.getElementById('d-date');if(dEl){
     if(window._deepLinked){ dEl.textContent='Shared card'; }
     else if(window._browsed){ dEl.textContent='Browsing'; }
@@ -447,7 +445,6 @@ function setBrowseQ(q){browseQ=q;renderBrowseView();}
 function buildBrowseCompact(p,cidx){
   const ctxHtml=p.ctx?`<div class="card-ctx" style="margin:0 0 .2rem">${p.ctx}</div>`:'';
   return `<div class="browse-compact" id="bc-${cidx}" onclick="expandBrowseCard(${cidx})">
-    <div class="card-number" style="font-size:1.4rem;top:.9rem;right:1.1rem">${String(cidx+1).padStart(2,'0')}</div>
     <div class="card-source" style="margin-bottom:.35rem">${p.s}</div>
     ${ctxHtml}
     <div class="browse-compact-title">${p.p}</div>
@@ -467,7 +464,6 @@ function buildListCard(p,cidx){
   const rel=relHtml(p);
   return `<div class="list-card-wrap">
     <div class="list-card" onclick="toggleListCard('${eId}',event)">
-      <div class="card-number">${String(cidx+1).padStart(2,'0')}</div>
       <div class="card-source">${p.s}${p.t?' <span class="theme-tag tag-'+p.t+'" style="margin-left:.5rem;vertical-align:middle">'+(THEMES[p.t]||p.t)+'</span>':''}</div>
       ${ctxHtml}
       <div class="card-practice">${p.p}</div>
