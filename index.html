@@ -303,7 +303,7 @@ function jumpToCard(targetIdx, ev){
 
 function renderDaily(){
   const f=filt();if(!f.length)return;
-  history.replaceState(null,'','#card-'+((idx%f.length)+1));
+  if(window._browsed||window._deepLinked){history.replaceState(null,'','#card-'+((idx%f.length)+1));}
   const p=f[idx%f.length],ri=P.indexOf(p);
   const dEl=document.getElementById('d-date');if(dEl){
     if(window._deepLinked){ dEl.textContent='Shared card'; }
@@ -607,6 +607,7 @@ let idx=hashMatch?(parseInt(hashMatch[1],10)-1+P.length)%P.length:dayOfYear%P.le
 renderDaily();
 renderDailyIntro();
 updateHomeBlocks();
+if(hashMatch){history.replaceState(null,'',location.pathname+location.search);}
 const _tg=document.querySelector('header .tagline');if(_tg)_tg.textContent=P.length+' practices from '+BOOKS.length+' books on listening, connection & hard conversations';
 
 </script>
