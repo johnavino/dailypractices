@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daily Practices</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;700;800&display=swap');
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{color-scheme:light dark;--ink:#141210;--parchment:#fffefb;--card-bg:#fffefb;--rule:#e6e2da;--mid:#c9c4ba;--accent:#c9301c;--accent-light:#a3271a;--muted:#8b857b;--expand-bg:#fbf9f4;--bookmark:#c9301c;--theme-bg:#f5f1e9}
+  :root{color-scheme:light;--ink:#141210;--parchment:#fffefb;--card-bg:#fffefb;--rule:#e6e2da;--mid:#c9c4ba;--accent:#c9301c;--accent-light:#a3271a;--muted:#8b857b;--expand-bg:#fbf9f4;--bookmark:#c9301c;--theme-bg:#f5f1e9}
   body{background:var(--parchment);color:var(--ink);font-family:Newsreader,Georgia,serif;font-weight:400;min-height:100vh;padding:0 1.35rem 5.5rem}
   header{max-width:640px;margin:0 auto}
   .ed-bar{height:3px;background:var(--ink);margin-top:1rem}
@@ -89,9 +89,6 @@
   .sh-shifts{margin:1rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.7rem}
   .sh-shifts li{font-size:.88rem;line-height:1.62;color:var(--ink);padding-left:.95rem;border-left:2px solid var(--rule)}
   .sh-shifts li strong{color:var(--accent-light)}
-  @media (prefers-color-scheme: dark){
-    .sh-shifts li strong{color:var(--accent-light)}
-  }
   /* Daily intro */
   .daily-intro{max-width:640px;margin:1.6rem auto 0;padding:1.4rem 0 0;border-top:1px solid var(--rule);font-size:.88rem;color:var(--muted);line-height:1.7}
   .daily-intro a{color:var(--accent);text-decoration:none;cursor:pointer}
@@ -141,8 +138,6 @@
   .expand-example{margin-bottom:2rem}
   .expand-example:last-child{margin-bottom:0}
   .pitfall-example{border:none;background:none;padding:0;border-radius:0}
-  .pitfall-example .example-label{color:var(--accent)}
-  .pitfall-example .example-label::before{content:'\26A0\0020'}
 
   /* Browse */
   .browse-search{width:100%;box-sizing:border-box;background:none;border:none;border-bottom:1px solid var(--ink);padding:.65rem 0;font-size:1.05rem;color:var(--ink);font-family:Newsreader,serif;outline:none;margin-bottom:1.6rem}
@@ -193,10 +188,9 @@
   .rel-chip:hover{text-decoration-color:var(--accent);color:var(--ink)}
   .daily-card .card-practice{font-size:1.45rem;line-height:1.25}
   .browse-book-header{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:1.7rem 0 .8rem;padding-bottom:.35rem;border-bottom:1px solid var(--rule)}
-  @media (prefers-color-scheme: dark){
-    :root{--ink:#e9e3d8;--parchment:#171412;--card-bg:#171412;--rule:#322c25;--mid:#565049;--accent:#e2543e;--accent-light:#ef6b55;--muted:#a49a8b;--expand-bg:#1d1914;--bookmark:#e2543e;--theme-bg:#241e18}
-  }
   .view-btn:hover{color:var(--ink)}
+  .daily-mid{display:flex;flex-direction:column;align-items:center;gap:.35rem}
+  .rand-btn{background:none;border:none;font-family:Archivo,sans-serif;font-weight:700;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);cursor:pointer;padding:.15rem .3rem}
 </style>
 </head>
 <body>
@@ -212,12 +206,6 @@
   <button class="view-btn" id="btn-feelings" onclick="setView('feelings')">Feelings</button>
 </div>
 <div id="daily-view" class="daily-view">
-  <div class="daily-top-row">
-    <span class="tap-hint">Tap the card for examples</span>
-    <div style="display:flex;gap:.4rem;align-items:center">
-      <button class="icon-btn" title="Random card" onclick="shuffleCard()">&#8652;</button>
-    </div>
-  </div>
   <div class="daily-date" id="d-date"></div>
   <div class="daily-card" onclick="toggleExpand('daily-expand','d-toggle',event)">
     <div class="ed-folio" id="d-folio"></div>
@@ -233,7 +221,7 @@
   </div>
   <div class="daily-nav">
     <button class="nav-btn" onclick="changeCard(-1)">&larr; Previous</button>
-    <span class="daily-counter" id="d-counter"></span>
+    <span class="daily-mid"><span class="daily-counter" id="d-counter"></span><button class="rand-btn" onclick="shuffleCard()">Random</button></span>
     <button class="nav-btn" onclick="changeCard(1)">Next &rarr;</button>
   </div>
 </div>
@@ -294,7 +282,7 @@ function renderDaily(){
   const dEl=document.getElementById('d-date');if(dEl){
     if(window._deepLinked){ dEl.textContent='Shared card'; }
     else if(window._browsed){ dEl.textContent='Browsing'; }
-    else { dEl.textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})+" \u00b7 Today's practice"; }
+    else { dEl.textContent="Today's practice"; }
   }
   document.getElementById('d-source').innerHTML=p.s+(p.t?' <span class="theme-tag tag-'+p.t+'" style="margin-left:.5rem;vertical-align:middle">'+(THEMES[p.t]||p.t)+'</span>':'');
   document.getElementById('d-practice').textContent=p.p;
