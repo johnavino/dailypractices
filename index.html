@@ -199,14 +199,15 @@
   .expand-inner{margin-top:2.6rem}
   .card-expand .expand-inner{margin-top:1.4rem}
   .list-card .expand-inner h3{margin-top:0}
-  .ed-dek{font-family:Newsreader,serif;font-style:italic;font-size:.9rem;color:var(--muted);padding:.6rem 0 0}
+  .daily-kick{display:flex;justify-content:space-between;align-items:baseline;margin:2.2rem 0 0}
+  .daily-kick .daily-date{margin:0}
+  .daily-kick .ed-folio{margin:0}
 </style>
 </head>
 <body>
 <header>
   <div class="ed-bar"></div>
   <div class="ed-kick"><span>Daily Practices</span><span id="kick-date"></span></div>
-  <div class="ed-dek" id="ed-dek"></div>
 </header>
 <div class="view-toggle">
   <button class="view-btn active" id="btn-daily" onclick="setView('daily')">Daily</button>
@@ -216,9 +217,8 @@
   <button class="view-btn" id="btn-feelings" onclick="setView('feelings')">Feelings</button>
 </div>
 <div id="daily-view" class="daily-view">
-  <div class="daily-date" id="d-date"></div>
+  <div class="daily-kick"><div class="daily-date" id="d-date"></div><div class="ed-folio" id="d-folio"></div></div>
   <div class="daily-card">
-    <div class="ed-folio" id="d-folio"></div>
     <div class="card-source" id="d-source"></div>
     <div class="card-practice" id="d-practice"></div>
     <div class="card-ctx" id="d-ctx"></div>
@@ -295,7 +295,7 @@ function renderDaily(){
     else if(window._browsed){ dEl.textContent='Browsing'; }
     else { dEl.textContent="Today's practice"; }
   }
-  document.getElementById('d-source').innerHTML=p.s+(p.t?' <span class="theme-tag tag-'+p.t+'" style="margin-left:.5rem;vertical-align:middle">'+(THEMES[p.t]||p.t)+'</span>':'');
+  document.getElementById('d-source').innerHTML=p.s+(p.t?' <span class="theme-tag tag-'+p.t+'">'+(THEMES[p.t]||p.t)+'</span>':'');
   document.getElementById('d-practice').textContent=p.p;
   const ctxEl=document.getElementById('d-ctx');
   if(ctxEl){ctxEl.textContent=p.ctx||'';ctxEl.style.display=p.ctx?'':'none';}
@@ -479,7 +479,7 @@ function buildListCard(p,cidx){
   return `<div class="list-card-wrap">
     <div class="list-card">
       <div class="ed-folio">\u2116 ${cidx+1}</div>
-      <div class="card-source">${p.s}${p.t?' <span class="theme-tag tag-'+p.t+'" style="margin-left:.5rem;vertical-align:middle">'+(THEMES[p.t]||p.t)+'</span>':''}</div>
+      <div class="card-source">${p.s}${p.t?' <span class="theme-tag tag-'+p.t+'">'+(THEMES[p.t]||p.t)+'</span>':''}</div>
       ${ctxHtml}
       <div class="card-practice">${p.p}</div>
       <div class="card-body">${p.b}</div>
@@ -597,7 +597,6 @@ renderDailyIntro();
 updateHomeBlocks();
 if(hashMatch){history.replaceState(null,'',location.pathname+location.search);}
 const _kd=document.getElementById('kick-date');if(_kd)_kd.textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'long',day:'numeric'});
-const _tg=document.getElementById('ed-dek');if(_tg)_tg.textContent=P.length+' practices from '+BOOKS.length+' books on listening, connection & hard conversations';
 
 </script>
 </body>
