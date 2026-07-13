@@ -106,8 +106,8 @@
   .book-grid-author{font-size:.75rem;color:var(--accent-light);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.55rem}
   .book-grid-desc{font-size:.88rem;color:#3d3530;line-height:1.6}
   .book-grid-arrow{color:var(--rule);font-size:1.2rem;padding-top:2px;flex-shrink:0}
-  .book-grid-meta{display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem;padding-top:.7rem;border-top:1px solid var(--rule)}
-  .book-grid-count{font-family:Archivo,sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .book-grid-meta{display:flex;flex-direction:column;gap:.7rem;margin-top:.8rem;padding-top:.7rem;border-top:1px solid var(--rule)}
+  .book-grid-count{font-family:Newsreader,serif;font-size:.82rem;font-style:italic;letter-spacing:0;text-transform:none;color:var(--muted)}
 
   /* Guide list cards */
   #guides-content{counter-reset:g}
@@ -202,8 +202,11 @@
   .daily-kick{display:flex;justify-content:space-between;align-items:baseline;margin:2.2rem 0 0}
   .daily-kick .daily-date{margin:0}
   .daily-kick .ed-folio{margin:0}
-  .book-grid-themes{display:flex;flex-wrap:wrap;align-items:center;gap:.15rem .55rem;line-height:1.7}
+  .book-grid-themes{display:flex;flex-wrap:wrap;align-items:center;gap:.2rem .5rem;line-height:1.6}
   .theme-sep{color:var(--mid);font-size:.6rem}
+  .book-grid-count b{font-style:normal;font-weight:600;color:var(--ink)}
+  .book-grid-themes .theme-tag{font-size:.58rem}
+  .book-grid-themes .theme-sep{opacity:.5}
 </style>
 </head>
 <body>
@@ -387,7 +390,7 @@ function renderBooksView(bookIdx){
           </div>
           <div class="book-grid-arrow">&#8250;</div>
         </div>
-        <div class="book-grid-meta"><div class="book-grid-themes">${tags}</div><span class="book-grid-count">${cnt} practices</span></div>
+        <div class="book-grid-meta"><div class="book-grid-themes">${tags}</div><span class="book-grid-count"><b>${cnt}</b> practices</span></div>
       </div>`;
     }).join('');
     ct.innerHTML=`<div class="section-intro">Tap any book to browse its practices.</div>${cards}`;
